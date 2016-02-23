@@ -17,6 +17,8 @@ struct TreeNode {
 };
 class Solution {
 public:
+class Solution {
+public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         if (!root) {
             return NULL;
@@ -29,14 +31,14 @@ public:
             TreeNode *r = NULL;
             l = lowestCommonAncestor(root->left, p, q);
             r = lowestCommonAncestor(root->right, p, q);
-            if (!l && !r) {
+            if (l && r) {
                 //root is the LCA since q and q exist on both sides
                 return root;
             } else if (!l) {
                 //LCA exsist on the right  branch
-                return lowestCommonAncestor(root->right, p, q);
+                return r;
             } else if (!r) {
-                return lowestCommonAncestor(root->left, p, q);
+                return l;
             } else {
                 return NULL;
             }
